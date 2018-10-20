@@ -19,7 +19,6 @@ p '-- Decrypting using private key'
 m = RsaDecryptor.new(private_key).decrypt(c)
 p m
 
-
 p '-- Brutal force'
 brutal_force_decryptor = BrutalForceDecryptor.new(public_key)
 forced_private_key = brutal_force_decryptor.decrypt
