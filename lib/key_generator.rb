@@ -3,9 +3,9 @@
 require_relative 'utils'
 
 class KeyGenerator
-  def self.generate_key
-    p = random_prime(except: nil)
-    q = random_prime(except: p)
+  def self.generate_key(prime_min, prime_max)
+    p = random_prime(except: nil, min: prime_min, max: prime_max)
+    q = random_prime(except: p, min: prime_min, max: prime_max)
     phi_pq = (p - 1) * (q - 1)
     e = determine_e(phi_pq)
     n = p * q
@@ -13,19 +13,16 @@ class KeyGenerator
     [[e, n], [d, n]]
   end
 
-  PRIME_MIN = 128
-  PRIME_MAX = 256
-
-  def self.random_prime(except: nil)
-    n = PRIME_MIN + Random.rand(PRIME_MAX - PRIME_MIN)
+  def self.random_prime(except: nil, min:, max:)
+    n = min + Random.rand(max - min)
     loop do
-      while n < PRIME_MAX
+      while n < max
         n += 1
         next if n.even?
         next if !except.nil? && except == n
         return n if Utils.prime?(n)
       end
-      n = PRIME_MIN
+      n = min
     end
   end
 
