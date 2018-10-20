@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RsaDecryptor
   def initialize(private_key)
     @private_key = private_key
@@ -12,6 +14,6 @@ class RsaDecryptor
   end
 
   def decrypt_num(num)
-    (num ** @private_key[0]) % @private_key[1]
+    (num**@private_key[0]) % @private_key[1]
   end
 end

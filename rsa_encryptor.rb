@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RsaEncryptor
   def initialize(public_key)
     @public_key = public_key
@@ -12,6 +14,6 @@ class RsaEncryptor
   end
 
   def encrypt_num(num)
-    (num ** @public_key[0]) % @public_key[1]
+    (num**@public_key[0]) % @public_key[1]
   end
 end

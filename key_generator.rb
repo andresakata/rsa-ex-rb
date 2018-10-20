@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class KeyGenerator
   def self.generate_example_key
     p = 11
@@ -18,16 +20,14 @@ class KeyGenerator
     [[e, n], [d, n]]
   end
 
-  private
-
   PRIME_MIN = 128
   PRIME_MAX = 256
 
   def self.random_prime(except: nil)
     n = PRIME_MIN + Random.rand(PRIME_MAX - PRIME_MIN)
-    while true
+    loop do
       while n < PRIME_MAX
-        n = n + 1
+        n += 1
         next if n.even?
         next if !except.nil? && except == n
         return n if prime?(n)
@@ -40,19 +40,19 @@ class KeyGenerator
     return false if n <= 1 || n == 4
     return true if n <= 3
     k = 25
-    while k > 0
+    while k.positive?
       a = 2 + Random.rand(n - 4)
-      return false unless ((a ** (n - 1)) % n) == 1
-      k = k - 1
+      return false unless ((a**(n - 1)) % n) == 1
+      k -= 1
     end
     true
   end
 
   def self.determine_e(phi_pq)
     e = 3 + Random.rand(phi_pq - 3)
-    while true
+    loop do
       while e < phi_pq
-        e = e + 1
+        e += 1
         return e if gcd(e, phi_pq) == 1
       end
       e = 3
@@ -61,11 +61,11 @@ class KeyGenerator
 
   def self.determine_d(e, phi_pq)
     d = extended_gcd(e, phi_pq)[1]
-    if d < 0
+    if d.negative?
       # Busca valor positivo congruente a d % phi_pq
       t = 1
       while t % phi_pq != d % phi_pq
-        t = t + 1
+        t += 1
       end
       d = t
     end
@@ -75,7 +75,7 @@ class KeyGenerator
   # Euclidean algorithm
 
   def self.gcd(a, b)
-    while b > 0
+    while b.positive?
       t = b
       b = a % b
       a = t
