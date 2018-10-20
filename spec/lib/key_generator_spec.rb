@@ -39,21 +39,26 @@ RSpec.describe KeyGenerator do
       end
     end
 
-    def create_logger(file_name)
-      Logger.new(
-        File.open(
-          'log/' + file_name,
-          File::WRONLY | File::APPEND | File::CREAT
-        )
-      )
-    end
+    #context 'when prime min and max values are 2*14 and 2**15' do
+    #  it 'generates key' do
+    #    logger = create_logger('key_14.log')
+    #    for i in 1..25 do
+    #      generate_key(logger, 2**14, 2**15)
+    #    end
+    #  end
+    #end
+
+    #context 'when prime min and max values are 2*15 and 2**16' do
+    #  it 'generates key' do
+    #    logger = create_logger('key_15.log')
+    #    for i in 1..25 do
+    #      generate_key(logger, 2**15, 2**16)
+    #    end
+    #  end
+    #end
 
     def generate_key(logger, min, max)
-      GC.start
-      init_time = Time.now
-      KeyGenerator.generate_key(min, max)
-      end_time = Time.now
-      logger.info(end_time - init_time)
+      run_and_log(logger) { KeyGenerator.generate_key(min, max) }
     end
   end
 end
