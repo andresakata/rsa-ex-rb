@@ -16,23 +16,20 @@ class PollardRhoDecryptor
 
   private
 
-  def factorize(number)
-    x_fixed = 2
-    cycle_size = 2
-    x = 2
-    factor = 1
-
-    while factor == 1
-      count = 1
-      while count <= cycle_size && factor <= 1
-        x = (x * x + 1) % number
-        factor = Utils.gcd(x - x_fixed, number)
-        count += 1
-      end
-      cycle_size *= 2
-      x_fixed = x
+  def factorize(n)
+    return n if n == 1
+    return 2 if n % 2 == 0
+    x = 2 + Random.rand(n - 2)
+    y = x
+    c = 1 + Random.rand(n - 1)
+    d = 1
+    while d == 1
+      x = ((x**2 % n) + c + n) % n
+      y = ((y**2 % n) + c + n) % n
+      y = ((y**2 % n) + c + n) % n
+      d = Utils.gcd((x - y).abs, n)
+      return factorize(n) if d == n
     end
-
-    factor
+    d
   end
 end
