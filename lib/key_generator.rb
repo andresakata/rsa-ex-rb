@@ -1,6 +1,6 @@
-require_relative 'utils'
-
 # frozen_string_literal: true
+
+require_relative 'utils'
 
 class KeyGenerator
   def self.generate_key
