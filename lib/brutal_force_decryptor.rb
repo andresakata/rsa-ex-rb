@@ -3,7 +3,7 @@
 require_relative 'utils'
 
 class BrutalForceDecryptor
-  def self.decrypt(public_key)
+  def self.decrypt_1(public_key)
     should_break = false
     for i in 0..KeyGenerator::PRIME_MAX do
       next unless i.odd? && Utils.prime?(i)
@@ -18,6 +18,21 @@ class BrutalForceDecryptor
     end
     [
       KeyGenerator.determine_d(public_key[0], (i - 1) * (j - 1)),
+      public_key[1]
+    ]
+  end
+
+  def self.decrypt_2(public_key)
+    p = 0
+    for i in 2..Integer.sqrt(public_key[1])
+      if public_key[1] % i == 0
+        p = i
+        break
+      end
+    end
+    q = public_key[1] / p
+    [
+      KeyGenerator.determine_d(public_key[0], (p - 1) * (q - 1)),
       public_key[1]
     ]
   end
