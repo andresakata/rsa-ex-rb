@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Utils
 
   # Probabilistic verification for prime

@@ -2,7 +2,7 @@
 
 require_relative 'utils'
 
-class BrutalForceDecryptor
+class BruteForceDecryptor
   def initialize(public_key)
     @public_key = public_key
   end
