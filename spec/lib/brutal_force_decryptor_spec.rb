@@ -1,6 +1,7 @@
 require 'logger'
 require 'key_generator'
 require 'brutal_force_decryptor'
+require 'pollard_rho_decryptor'
 require 'rsa_encryptor'
 require 'rsa_decryptor'
 
@@ -19,84 +20,96 @@ RSpec.describe BrutalForceDecryptor do
 
     context 'when public key has 2**8 key size' do
       it 'decrypt message' do
-        logger = create_logger('brutal_force_8.log')
+        logger_brutal = create_logger('brutal_force_8.log')
+        logger_pollard = create_logger('pollard_rho_8.log')
         for i in 1..25 do
-          run_decrypt(2**8, 2**9, logger)
+          run_decrypt(2**8, 2**9, logger_brutal, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**9 key size' do
       it 'decrypt message' do
-        logger = create_logger('brutal_force_9.log')
+        logger_brutal = create_logger('brutal_force_9.log')
+        logger_pollard = create_logger('pollard_rho_9.log')
         for i in 1..25 do
-          run_decrypt(2**9, 2**10, logger)
+          run_decrypt(2**9, 2**10, logger_brutal, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**10 key size' do
       it 'decrypt message' do
-        logger = create_logger('brutal_force_10.log')
+        logger_brutal = create_logger('brutal_force_10.log')
+        logger_pollard = create_logger('pollard_rho_10.log')
         for i in 1..25 do
-          run_decrypt(2**10, 2**11, logger)
+          run_decrypt(2**10, 2**11, logger_brutal, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**11 key size' do
       it 'decrypt message' do
-        logger = create_logger('brutal_force_11.log')
+        logger_brutal = create_logger('brutal_force_11.log')
+        logger_pollard = create_logger('pollard_rho_11.log')
         for i in 1..25 do
-          run_decrypt(2**11, 2**12, logger)
+          run_decrypt(2**11, 2**12, logger_brutal, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**12 key size' do
       it 'decrypt message' do
-        logger = create_logger('brutal_force_12.log')
+        logger_brutal = create_logger('brutal_force_12.log')
+        logger_pollard = create_logger('pollard_rho_12.log')
         for i in 1..25 do
-          run_decrypt(2**12, 2**13, logger)
+          run_decrypt(2**12, 2**13, logger_brutal, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**13 key size' do
       it 'decrypt message' do
-        logger = create_logger('brutal_force_13.log')
+        logger_brutal = create_logger('brutal_force_13.log')
+        logger_pollard = create_logger('pollard_rho_13.log')
         for i in 1..5 do
-          run_decrypt(2**13, 2**14, logger)
+          run_decrypt(2**13, 2**14, logger_brutal, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**14 key size' do
       it 'decrypt message' do
-        logger = create_logger('brutal_force_14.log')
+        logger_brutal = create_logger('brutal_force_14.log')
+        logger_pollard = create_logger('pollard_rho_14.log')
         for i in 1..5 do
-          run_decrypt(2**14, 2**15, logger)
+          run_decrypt(2**14, 2**15, logger_brutal, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**15 key size' do
       it 'decrypt message' do
-        logger = create_logger('brutal_force_15.log')
+        logger_brutal = create_logger('brutal_force_15.log')
+        logger_pollard = create_logger('pollard_rho_15.log')
         for i in 1..5 do
-          run_decrypt(2**15, 2**16, logger)
+          run_decrypt(2**15, 2**16, logger_brutal, logger_pollard)
         end
       end
     end
 
-    def run_decrypt(min, max, logger)
+    def run_decrypt(min, max, logger_brutal, logger_pollard)
       public_key, private_key = KeyGenerator.generate_key(min, max)
-      new_private_key = decrypt(logger, public_key)
-      expect(private_key).to eq(new_private_key)
+      expect(decrypt_brutal(logger_brutal, public_key)).to eq(private_key)
+      expect(decrypt_pollard(logger_pollard, public_key)).to eq(private_key)
     end
 
-    def decrypt(logger, public_key)
-      run_and_log(logger) { BrutalForceDecryptor.new(public_key).decrypt }
+    def decrypt_brutal(logger_brutal, public_key)
+      run_and_log(logger_brutal) { BrutalForceDecryptor.new(public_key).decrypt }
+    end
+
+    def decrypt_pollard(logger_pollard, public_key)
+      run_and_log(logger_pollard) { PollardRhoDecryptor.new(public_key).decrypt }
     end
   end
 end
