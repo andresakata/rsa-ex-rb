@@ -98,6 +98,16 @@ RSpec.describe BruteForceDecryptor do
       end
     end
 
+    context 'when public key has 2**16 key size' do
+      it 'decrypt message' do
+        logger_brute = create_logger('brute_force_16.log')
+        logger_pollard = create_logger('pollard_rho_16.log')
+        for i in 1..5 do
+          run_decrypt(2**16, 2**17, logger_brute, logger_pollard)
+        end
+      end
+    end
+
     def run_decrypt(min, max, logger_brute, logger_pollard)
       public_key, private_key = KeyGenerator.generate_key(min, max)
       expect(decrypt_brute(logger_brute, public_key)).to eq(private_key)
