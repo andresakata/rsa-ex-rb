@@ -25,7 +25,7 @@ class Utils
     a
   end
 
-  # Extended Euclidean algorithm
+  # Extended euclidean algorithm
 
   def self.extended_gcd(a, b)
     x = 0

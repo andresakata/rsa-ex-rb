@@ -6,9 +6,9 @@ class KeyGenerator
   def self.generate_key(prime_min, prime_max)
     p = random_prime(except: nil, min: prime_min, max: prime_max)
     q = random_prime(except: p, min: prime_min, max: prime_max)
+    n = p * q
     phi_pq = (p - 1) * (q - 1)
     e = determine_e(phi_pq)
-    n = p * q
     d = determine_d(e, phi_pq)
     [[e, n], [d, n]]
   end
