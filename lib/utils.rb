@@ -13,7 +13,7 @@ class Utils
     result
   end
 
-  # Probabilistic verification for prime
+  # Probabilistic verification for prime (Fermat)
 
   def self.prime?(n)
     return false if n <= 1 || n == 4
