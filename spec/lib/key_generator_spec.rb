@@ -42,7 +42,7 @@ RSpec.describe KeyGenerator do
     context 'when prime min and max values are 2*12 and 2**13' do
       it 'generates key' do
         logger = create_logger('key_12.log')
-        for i in 1..25 do
+        for i in 1..10 do
           generate_key(logger, 2**12, 2**13)
         end
       end

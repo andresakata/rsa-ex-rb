@@ -44,7 +44,7 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_10.log')
         logger_pollard = create_logger('pollard_rho_10.log')
-        for i in 1..25 do
+        for i in 1..10 do
           run_decrypt(2**10, 2**11, logger_brute, logger_pollard)
         end
       end
@@ -54,7 +54,7 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_11.log')
         logger_pollard = create_logger('pollard_rho_11.log')
-        for i in 1..25 do
+        for i in 1..10 do
           run_decrypt(2**11, 2**12, logger_brute, logger_pollard)
         end
       end
@@ -64,7 +64,7 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_12.log')
         logger_pollard = create_logger('pollard_rho_12.log')
-        for i in 1..25 do
+        for i in 1..10 do
           run_decrypt(2**12, 2**13, logger_brute, logger_pollard)
         end
       end
@@ -74,7 +74,7 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_13.log')
         logger_pollard = create_logger('pollard_rho_13.log')
-        for i in 1..5 do
+        for i in 1..4 do
           run_decrypt(2**13, 2**14, logger_brute, logger_pollard)
         end
       end
