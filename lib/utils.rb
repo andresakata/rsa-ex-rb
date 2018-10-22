@@ -1,11 +1,16 @@
 class Utils
   def self.modpow(base, exponent, modulus)
     return 0 if modulus == 1
-    c = 1
-    for e in 0..(exponent - 1)
-      c = (c * base) % modulus
+    result = 1
+    base = base % modulus
+    while exponent > 0
+      if exponent % 2 == 1
+        result = (result * base) % modulus
+      end
+      exponent = exponent >> 1
+      base = (base * base) % modulus
     end
-    c
+    result
   end
 
   # Probabilistic verification for prime
