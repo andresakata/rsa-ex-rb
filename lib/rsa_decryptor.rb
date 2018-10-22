@@ -14,6 +14,6 @@ class RsaDecryptor
   end
 
   def decrypt_num(num)
-    (num**@private_key[0]) % @private_key[1]
+    Utils.modpow(num, @private_key[0], @private_key[1])
   end
 end

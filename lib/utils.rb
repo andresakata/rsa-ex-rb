@@ -1,4 +1,12 @@
 class Utils
+  def self.modpow(base, exponent, modulus)
+    return 0 if modulus == 1
+    c = 1
+    for e in 0..(exponent - 1)
+      c = (c * base) % modulus
+    end
+    c
+  end
 
   # Probabilistic verification for prime
 
@@ -8,7 +16,7 @@ class Utils
     k = 25
     while k.positive?
       a = 2 + Random.rand(n - 4)
-      return false unless ((a**(n - 1)) % n) == 1
+      return false unless modpow(a, n - 1, n) == 1
       k -= 1
     end
     true

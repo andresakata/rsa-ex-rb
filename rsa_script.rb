@@ -6,7 +6,7 @@ require_relative 'lib/key_generator'
 require_relative 'lib/brute_force_decryptor'
 require_relative 'lib/pollard_rho_decryptor'
 
-public_key, private_key = KeyGenerator.generate_key(2**7, 2**8)
+public_key, private_key = KeyGenerator.generate_key(2**9, 2**10)
 
 file = File.read('file')
 puts file

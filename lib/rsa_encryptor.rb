@@ -14,6 +14,6 @@ class RsaEncryptor
   end
 
   def encrypt_num(num)
-    (num**@public_key[0]) % @public_key[1]
+    Utils.modpow(num, @public_key[0], @public_key[1])
   end
 end
