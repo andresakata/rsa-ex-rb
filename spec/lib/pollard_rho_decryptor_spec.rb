@@ -5,7 +5,7 @@ require 'rsa_encryptor'
 require 'rsa_decryptor'
 
 RSpec.describe PollardRhoDecryptor do
-  context '#decrypt' do
+  describe '#decrypt' do
     context 'when public key has 2**7 key size' do
       it 'decrypt message' do
         public_key, _private_key = KeyGenerator.generate_key(2**7, 2**8)

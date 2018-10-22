@@ -6,7 +6,9 @@ require 'rsa_encryptor'
 require 'rsa_decryptor'
 
 RSpec.describe BruteForceDecryptor do
-  context '#decrypt' do
+  # It is testing both BruteForceDecryptor and
+  # PollardRhoDecryptor for benchmarking reasons
+  describe '#decrypt' do
     context 'when public key has 2**7 key size' do
       it 'decrypt message' do
         public_key, _private_key = KeyGenerator.generate_key(2**7, 2**8)
@@ -82,7 +84,7 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_14.log')
         logger_pollard = create_logger('pollard_rho_14.log')
-        for i in 1..5 do
+        for i in 1..2 do
           run_decrypt(2**14, 2**15, logger_brute, logger_pollard)
         end
       end
@@ -92,7 +94,7 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_15.log')
         logger_pollard = create_logger('pollard_rho_15.log')
-        for i in 1..5 do
+        for i in 1..2 do
           run_decrypt(2**15, 2**16, logger_brute, logger_pollard)
         end
       end
@@ -102,7 +104,7 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_16.log')
         logger_pollard = create_logger('pollard_rho_16.log')
-        for i in 1..5 do
+        for i in 1..2 do
           run_decrypt(2**16, 2**17, logger_brute, logger_pollard)
         end
       end

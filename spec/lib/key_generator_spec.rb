@@ -51,7 +51,7 @@ RSpec.describe KeyGenerator do
     context 'when prime min and max values are 2*13 and 2**14' do
       it 'generates key' do
         logger = create_logger('key_13.log')
-        for i in 1..5 do
+        for i in 1..2 do
           generate_key(logger, 2**13, 2**14)
         end
       end
@@ -60,7 +60,7 @@ RSpec.describe KeyGenerator do
     context 'when prime min and max values are 2*14 and 2**15' do
       it 'generates key' do
         logger = create_logger('key_14.log')
-        for i in 1..5 do
+        for i in 1..2 do
           generate_key(logger, 2**14, 2**15)
         end
       end
@@ -69,7 +69,7 @@ RSpec.describe KeyGenerator do
     context 'when prime min and max values are 2*15 and 2**16' do
       it 'generates key' do
         logger = create_logger('key_15.log')
-        for i in 1..5 do
+        for i in 1..2 do
           generate_key(logger, 2**15, 2**16)
         end
       end
