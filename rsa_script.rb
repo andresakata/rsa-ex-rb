@@ -6,7 +6,7 @@ require_relative 'lib/key_generator'
 require_relative 'lib/brute_force_decryptor'
 require_relative 'lib/pollard_rho_decryptor'
 
-public_key, private_key = KeyGenerator.generate_key(2**10, 2**11)
+public_key, private_key = KeyGenerator.generate_key(2**32, 2**33)
 
 file = File.read('file')
 puts file
@@ -18,8 +18,8 @@ p c
 puts '-- Decrypting using private key'
 puts RsaDecryptor.new(private_key).decrypt(c)
 
-puts '-- Brute Force'
-puts RsaDecryptor.new(BruteForceDecryptor.new(public_key).decrypt).decrypt(c)
-
 puts '-- Pollard Rho'
 puts RsaDecryptor.new(PollardRhoDecryptor.new(public_key).decrypt).decrypt(c)
+
+puts '-- Brute Force'
+puts RsaDecryptor.new(BruteForceDecryptor.new(public_key).decrypt).decrypt(c)

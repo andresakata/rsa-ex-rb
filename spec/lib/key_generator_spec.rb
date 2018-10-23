@@ -6,76 +6,50 @@ RSpec.describe KeyGenerator do
     context 'when prime min and max values are 2**8 and 2**9' do
       it 'generates key' do
         logger = create_logger('key_8.log')
-        for i in 1..25 do
+        for i in 1..20 do
           generate_key(logger, 2**8, 2**9)
         end
       end
     end
 
-    context 'when prime min and max values are 2**9 and 2**10' do
+    context 'when prime min and max values are 2**16 and 2**17' do
       it 'generates key' do
-        logger = create_logger('key_9.log')
-        for i in 1..25 do
-          generate_key(logger, 2**9, 2**10)
+        logger = create_logger('key_16.log')
+        for i in 1..20 do
+          generate_key(logger, 2**16, 2**17)
         end
       end
     end
 
-    context 'when prime min and max values are 2**10 and 2**11' do
+    context 'when prime min and max values are 2**32 and 2**33' do
       it 'generates key' do
-        logger = create_logger('key_10.log')
-        for i in 1..25 do
-          generate_key(logger, 2**10, 2**11)
+        logger = create_logger('key_32.log')
+        for i in 1..20 do
+          generate_key(logger, 2**32, 2**33)
         end
       end
     end
 
-    context 'when prime min and max values are 2**11 and 2**12' do
+    context 'when prime min and max values are 2**48 and 2**49' do
       it 'generates key' do
-        logger = create_logger('key_11.log')
-        for i in 1..25 do
-          generate_key(logger, 2**11, 2**12)
+        logger = create_logger('key_48.log')
+        for i in 1..20 do
+          generate_key(logger, 2**48, 2**49)
         end
       end
     end
 
-    context 'when prime min and max values are 2*12 and 2**13' do
+    context 'when prime min and max values are 2*64 and 2**65' do
       it 'generates key' do
-        logger = create_logger('key_12.log')
-        for i in 1..10 do
-          generate_key(logger, 2**12, 2**13)
-        end
-      end
-    end
-
-    context 'when prime min and max values are 2*13 and 2**14' do
-      it 'generates key' do
-        logger = create_logger('key_13.log')
-        for i in 1..2 do
-          generate_key(logger, 2**13, 2**14)
-        end
-      end
-    end
-
-    context 'when prime min and max values are 2*14 and 2**15' do
-      it 'generates key' do
-        logger = create_logger('key_14.log')
-        for i in 1..2 do
-          generate_key(logger, 2**14, 2**15)
-        end
-      end
-    end
-
-    context 'when prime min and max values are 2*15 and 2**16' do
-      it 'generates key' do
-        logger = create_logger('key_15.log')
-        for i in 1..2 do
-          generate_key(logger, 2**15, 2**16)
+        logger = create_logger('key_64.log')
+        for i in 1..20 do
+          generate_key(logger, 2**64, 2**65)
         end
       end
     end
 
     def generate_key(logger, min, max)
+      p "Gerando chave #{min} #{max}"
       run_and_log(logger) { KeyGenerator.generate_key(min, max) }
     end
   end

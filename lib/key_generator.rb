@@ -41,10 +41,7 @@ class KeyGenerator
     d = Utils.extended_gcd(e, phi_pq)[1]
     if d.negative?
       # Busca valor positivo congruente a d % phi_pq
-      t = 1
-      while t % phi_pq != d % phi_pq
-        t += 1
-      end
+      t = d + phi_pq
       d = t
     end
     d
