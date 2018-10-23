@@ -72,8 +72,10 @@ RSpec.describe BruteForceDecryptor do
 
     def run_decrypt(min, max, logger_brute, logger_pollard)
       public_key, private_key = KeyGenerator.generate_key(min, max)
-      p "Quebrando chave Brute Force #{min} #{max}"
-      expect(decrypt_brute(logger_brute, public_key)).to eq(private_key)
+      if 2**32 > min
+        p "Quebrando chave Brute Force #{min} #{max}"
+        expect(decrypt_brute(logger_brute, public_key)).to eq(private_key)
+      end
       p "Quebrando chave Pollard #{min} #{max}"
       expect(decrypt_pollard(logger_pollard, public_key)).to eq(private_key)
     end
