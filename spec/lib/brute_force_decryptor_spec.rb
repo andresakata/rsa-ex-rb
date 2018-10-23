@@ -24,8 +24,18 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_16.log')
         logger_pollard = create_logger('pollard_rho_16.log')
-        for i in 1..25 do
+        for i in 1..10 do
           run_decrypt(2**16, 2**17, logger_brute, logger_pollard)
+        end
+      end
+    end
+
+    context 'when public key has 2**20 key size' do
+      it 'decrypt message' do
+        logger_brute = create_logger('brute_force_20.log')
+        logger_pollard = create_logger('pollard_rho_20.log')
+        for i in 1..10 do
+          run_decrypt(2**20, 2**21, logger_brute, logger_pollard)
         end
       end
     end
@@ -34,38 +44,83 @@ RSpec.describe BruteForceDecryptor do
       it 'decrypt message' do
         logger_brute = create_logger('brute_force_24.log')
         logger_pollard = create_logger('pollard_rho_24.log')
-        for i in 1..25 do
+        for i in 1..10 do
           run_decrypt(2**24, 2**25, logger_brute, logger_pollard)
+        end
+      end
+    end
+
+    context 'when public key has 2**26 key size' do
+      it 'decrypt message' do
+        logger_brute = create_logger('brute_force_26.log')
+        logger_pollard = create_logger('pollard_rho_26.log')
+        for i in 1..10 do
+          run_decrypt(2**26, 2**27, logger_brute, logger_pollard)
+        end
+      end
+    end
+
+    context 'when public key has 2**28 key size' do
+      it 'decrypt message' do
+        logger_brute = create_logger('brute_force_28.log')
+        logger_pollard = create_logger('pollard_rho_28.log')
+        for i in 1..10 do
+          run_decrypt(2**28, 2**29, logger_brute, logger_pollard)
+        end
+      end
+    end
+
+    context 'when public key has 2**30 key size' do
+      it 'decrypt message' do
+        logger_brute = create_logger('brute_force_30.log')
+        logger_pollard = create_logger('pollard_rho_30.log')
+        for i in 1..10 do
+          run_decrypt(2**30, 2**31, logger_brute, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**32 key size' do
       it 'decrypt message' do
-        logger_brute = create_logger('brute_force_32.log')
         logger_pollard = create_logger('pollard_rho_32.log')
         for i in 1..10 do
-          run_decrypt(2**32, 2**33, logger_brute, logger_pollard)
+          run_decrypt(2**32, 2**33, nil, logger_pollard)
+        end
+      end
+    end
+
+    context 'when public key has 2**34 key size' do
+      it 'decrypt message' do
+        logger_pollard = create_logger('pollard_rho_34.log')
+        for i in 1..10 do
+          run_decrypt(2**34, 2**35, nil, logger_pollard)
+        end
+      end
+    end
+
+    context 'when public key has 2**36 key size' do
+      it 'decrypt message' do
+        logger_pollard = create_logger('pollard_rho_36.log')
+        for i in 1..10 do
+          run_decrypt(2**36, 2**37, nil, logger_pollard)
+        end
+      end
+    end
+
+    context 'when public key has 2**38 key size' do
+      it 'decrypt message' do
+        logger_pollard = create_logger('pollard_rho_38.log')
+        for i in 1..10 do
+          run_decrypt(2**38, 2**39, nil, logger_pollard)
         end
       end
     end
 
     context 'when public key has 2**40 key size' do
       it 'decrypt message' do
-        logger_brute = create_logger('brute_force_40.log')
         logger_pollard = create_logger('pollard_rho_40.log')
         for i in 1..10 do
-          run_decrypt(2**40, 2**41, logger_brute, logger_pollard)
-        end
-      end
-    end
-
-    context 'when public key has 2**48 key size' do
-      it 'decrypt message' do
-        logger_brute = create_logger('brute_force_48.log')
-        logger_pollard = create_logger('pollard_rho_48.log')
-        for i in 1..10 do
-          run_decrypt(2**48, 2**49, logger_brute, logger_pollard)
+          run_decrypt(2**40, 2**41, nil, logger_pollard)
         end
       end
     end
