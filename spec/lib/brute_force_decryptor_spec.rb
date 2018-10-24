@@ -152,6 +152,15 @@ RSpec.describe BruteForceDecryptor do
       end
     end
 
+    context 'when public key has 2**48 key size' do
+      it 'decrypt message' do
+        logger_pollard = create_logger('pollard_rho_48.log')
+        for i in 1..5 do
+          run_decrypt(2**48, 2**49, nil, logger_pollard)
+        end
+      end
+    end
+
     def run_decrypt(min, max, logger_brute, logger_pollard)
       public_key, private_key = KeyGenerator.generate_key(min, max)
       if 2**32 > min
