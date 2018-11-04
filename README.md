@@ -1,4 +1,4 @@
-# RSA
+# Criptografia RSA
 
 Projeto implementado na disciplina de Projeto e Análise de Algoritmos no mestrado de Computação Aplicada da UDESC-CCT.
 
